@@ -46,8 +46,11 @@ The analysis was built in Jupyter notebooks, and the results are explored in a S
   <img src="images/ranking.png" width="49%" alt="Trends: ranking of peak values">
   <img src="images/worldwide-impact.png" width="49%" alt="Worldwide impact: share of deaths by continent">
 </p>
+<p align="center">
+  <img src="images/world-map.png" width="80%" alt="World map of deaths per million">
+</p>
 
-<p align="center"><sub>Top row: small panels on a shared scale, and the monthly heatmap, shown here for Brazil, France, Germany, India, Japan, Sweden, the UK and the US (any countries can be selected in the dashboard). Bottom row: ranking of peak values (Japan ranks third mainly because of a single February 2023 spike that may be a reporting artifact), and the share of reported deaths by continent across 136 countries (about 6.78 million reported deaths in total).</sub></p>
+<p align="center"><sub>Top: small panels on a shared scale and the monthly heatmap, shown here for Brazil, France, Germany, India, Japan, Sweden, the UK and the US (any countries can be selected in the dashboard). Middle: ranking of peak values (Japan ranks third mainly because of a single February 2023 spike that may be a reporting artifact), and the share of reported deaths by continent across 136 countries (about 6.78 million reported deaths in total). Bottom: world map of deaths per million, where countries with no data in the model appear dark.</sub></p>
 
 ## Key findings
 
@@ -76,6 +79,14 @@ A cross-country regression (137 countries, R² = 0.52) found:
 | GDP per capita (log) | not significant | 0.27 |
 
 Comparing actual with predicted totals, Peru (+5,637), Brazil (+1,776) and the US (+1,092) recorded far more deaths than the model expects, and Japan (-2,221) far fewer. A lower figure than predicted can mean real success or undercounting, so these gaps are questions to investigate rather than verdicts. This analysis lives in `notebooks/04_drivers.ipynb`.
+
+## What this means
+
+- **Raw death counts are a weak way to rank countries.** Undercounting, uneven reporting and very different age structures all change the picture, so none of them can be ignored.
+- **Age structure explains far more than income.** Across 137 countries, median age was the strongest predictor of deaths per million, while GDP added little once age was included, so comparisons should adjust for age before judging how a country "performed".
+- **Before/after vaccination comparisons are unreliable on their own.** The result flipped at a higher threshold because it mostly reflects when waves and variants hit, so judging vaccine impact needs methods that account for timing.
+- **Use the dashboard to explore, not to rank.** It is best for spotting patterns and countries worth investigating, such as Peru and Japan against the model, not for deciding who handled the pandemic best.
+- **Next step:** excess mortality data would give a fairer cross-country comparison than reported deaths.
 
 ## Limitations
 
