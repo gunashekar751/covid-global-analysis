@@ -92,7 +92,7 @@ Comparing actual with predicted totals, Peru (+5,637), Brazil (+1,776) and the U
 
 - **Reported deaths only.** Countries count deaths differently, and undercounting is widespread. India's low reported curve is widely thought to understate the real toll. Excess mortality would be a better comparison.
 - **Uneven end dates.** Germany stops reporting deaths in mid-2023, and South Africa and Japan stop earlier (January and May 2023). Each country is cut off at its last real reporting date, with 30 June 2023 as the latest.
-- **Possible reporting artifacts.** Japan's February 2023 spike is in the source data. Chile's March 2022 peak of 87.4 per million is far above other countries and looks like a reporting catch-up. It has not been verified.
+- **Possible reporting artifacts.** Japan's February 2023 spike is in the source data. Chile's 87.4 per million peak in March 2022 is a one-day backlog, not a real daily peak: cumulative deaths jumped by about 590 per million in three days (about 19% of Chile's final total) and then returned to 3 to 4 per day. The dashboard's headline tile therefore shows total deaths per million instead of a single-day peak, and the peak-based views carry a note.
 - **Sparse and missing data.** About 55% of days have no stringency value, and some countries have very few vaccination records (Sweden has about 114). Gaps in these series are visually connected in the charts.
 - **Association, not causation.** Variants, seasonality, prior infection and testing differences all confound the results. The regression dropped 24 of 161 countries for missing predictors and can predict negative deaths for very young populations. A log-transformed outcome would fix that.
 

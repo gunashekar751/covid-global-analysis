@@ -42,11 +42,10 @@ if df.empty:
 
 # KPI tiles
 k1, k2, k3 = st.columns(3)
-deaths = df["new_deaths_smoothed_per_million"]
-if deaths.notna().any():
-    peak = df.loc[deaths.idxmax()]
-    k1.metric("Peak daily deaths per million", f"{peak['new_deaths_smoothed_per_million']:.1f}")
-    k1.caption(f"{peak['country']}, {peak['date']:%b %Y}")
+tot_c = df.groupby("country")["total_deaths_per_million"].last().dropna()
+if not tot_c.empty:
+    k1.metric("Highest total deaths per million", f"{tot_c.max():,.0f}")
+    k1.caption(f"{tot_c.idxmax()}, up to the end of your date range")
 k2.metric("Avg total deaths per million (selected)", f"{df.groupby('country')['total_deaths_per_million'].last().mean():,.0f}")
 k3.metric("Highest fully vaccinated (per 100)", f"{df['people_fully_vaccinated_per_hundred'].max():.0f}")
 
@@ -69,7 +68,7 @@ with tab1:
         fig.update_xaxes(title=None, tickformat="%Y", dtick="M12")
         fig.update_layout(showlegend=False)
     elif view == "Heatmap":
-        st.caption("Monthly average per country, highest first. Darker means higher. Blank means no data.")
+        st.caption("Monthly average per country, highest first. Darker means higher. Blank means no data. Single-day backlog reports can inflate peaks (for example Chile, March 2022).")
         m = df.assign(month=df["date"].dt.to_period("M").dt.to_timestamp()).groupby(["country", "month"])[col].mean().reset_index()
         pivot = m.pivot(index="country", columns="month", values=col)
         pivot = pivot.loc[pivot.max(axis=1).sort_values(ascending=False).index]
@@ -77,7 +76,7 @@ with tab1:
         fig.update_yaxes(dtick=1)
         fig.update_layout(height=max(400, 16 * len(pivot)))
     else:
-        st.caption("Highest value reached by each country in the selected period.")
+        st.caption("Highest value reached by each country in the selected period. Single-day backlog reports can inflate peaks (for example Chile, March 2022, and Japan, February 2023).")
         rank = df.groupby("country")[col].max().sort_values().reset_index()
         fig = px.bar(rank, x=col, y="country", orientation="h", labels={col: "Highest value of " + label})
         fig.update_layout(height=max(400, 18 * len(rank)))
