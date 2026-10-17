@@ -47,10 +47,6 @@ The analysis was built in Jupyter notebooks, and the results are explored in a S
   <img src="images/worldwide-impact.png" width="49%" alt="Worldwide impact: share of deaths by continent">
 </p>
 
-<p align="center">
-  <img src="images/world-map.png" width="80%" alt="World map of deaths per million">
-</p>
-
 <p align="center"><sub>Top row: small panels on a shared scale, and the monthly heatmap, shown here for Brazil, France, Germany, India, Japan, Sweden, the UK and the US (any countries can be selected in the dashboard). Bottom row: ranking of peak values (Japan ranks third mainly because of a single February 2023 spike that may be a reporting artifact), and the share of reported deaths by continent across 136 countries (about 6.78 million reported deaths in total).</sub></p>
 
 ## Key findings
